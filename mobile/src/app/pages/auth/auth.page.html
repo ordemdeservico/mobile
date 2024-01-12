@@ -1,0 +1,95 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title color="primary">OS Manager</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content [fullscreen]="true" class="ion-padding content">
+  <ion-grid class="ion-margin-top ion-padding-top">
+    <ion-row>
+      <ion-col size-md="6" offset-md="3" >
+        <div class="img">
+          <ion-avatar>
+            <ion-img src="../../../assets/IconeFundacao.png"></ion-img>
+          </ion-avatar>
+          <h1>Login</h1>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <form #f="ngForm" (ngSubmit)="onLogin(f)" class="ion-margin-top ion-padding-top">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-md="6" offset-md="3">
+          <ion-list>
+            <ion-item >
+              <ion-input
+                type="email"
+                name="email"
+                label="E-mail"
+                labelPlacement="floating"
+                placeholder="Entre com o e-mail"
+                email
+                required
+                ngModel
+                #emailCtrl="ngModel"
+              ></ion-input>
+            <ion-icon name="person-outline" slot="end"></ion-icon>
+            </ion-item>
+
+            <ion-item *ngIf="!emailCtrl.valid && emailCtrl.touched" lines="none">
+              <ion-label color="danger">E-mail inválido.</ion-label>
+            </ion-item>
+
+
+            <ion-item>
+              <ion-input
+                [type]="password_type"
+                name="password"
+                label="Senha"
+                labelPlacement="floating"
+                placeholder="Entre com a senha"
+                required
+                ngModel
+                #passwordCtrl="ngModel"
+              ></ion-input>
+
+              <ion-icon name="eye" slot="end" (click)="togglePasswordMode()"></ion-icon>
+            </ion-item>
+
+            <!-- <ion-item *ngIf="!passwordCtrl.valid && passwordCtrl.touched" lines="none">
+              <ion-label color="danger">Campo obrigatório</ion-label>
+            </ion-item> -->
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size-md="6" offset-md="3">
+          <ion-button
+            type="submit"
+            color="primary"
+            expand="block"
+            [disabled]="f.invalid"
+          >
+            Login
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+
+  <ion-grid class="ion-margin-top">
+    <ion-row>
+      <ion-col size-md="6" offset-md="3">
+        <ion-item lines="none">
+          <ion-label class="ion-text-center footer">
+            <h6>Dúvida? Entre em contato</h6>
+            <p>comunicacao&#64;fsnt.com.br&nbsp;&nbsp; (14)&nbsp;3405-2033</p>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

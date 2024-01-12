@@ -1,0 +1,19 @@
+.img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    h1 {
+        color: var(--ion-color-primary);
+        font-weight: 600;
+    }
+}
+
+.footer h6 {
+    font-weight: 600;
+}
+
+.footer p {
+    margin-top: 6px;
+}
