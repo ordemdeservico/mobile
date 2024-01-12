@@ -50,7 +50,7 @@ export class AuthPage implements OnInit {
             this.storage.set('token', res.token);
             loadingEl.dismiss();
             form.reset();
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/tabs/dashboard']);
           },
           error: (err) => {
             console.error('Erro: ', err);

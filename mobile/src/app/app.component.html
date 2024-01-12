@@ -1,3 +1,44 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu side="start" contentId="main" menuId="m1">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title color="primary">OS Manager</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle menu="m1">
+          <ion-item lines="none" routerLink="/tabs/dashboard">
+            <ion-icon name="build-outline" slot="start"></ion-icon>
+            <ion-label>Dashboard</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle menu="m1">
+          <ion-item lines="none" routerLink="/tabs/new-os">
+            <ion-icon name="add-circle-outline" slot="start"></ion-icon>
+            <ion-label>Nova OS</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle menu="m1">
+          <ion-item lines="none" routerLink="/tabs/profile">
+            <ion-icon name="person-outline" slot="start"></ion-icon>
+            <ion-label>Perfil</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle menu="m1">
+          <ion-item lines="none" button (click)="onLogout()">
+            <ion-icon name="exit" slot="start"></ion-icon>
+            <ion-label>Logout</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet id="main"></ion-router-outlet>
 </ion-app>
