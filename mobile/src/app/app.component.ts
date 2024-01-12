@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { StorageService } from './shared/services/storage.service';
 import { LoadingController } from '@ionic/angular';
 
@@ -10,14 +10,11 @@ import { LoadingController } from '@ionic/angular';
 })
 export class AppComponent {
 
-
   constructor(
     private router: Router,
     private storage: StorageService,
     private loadingCtrl: LoadingController
   ) { }
-
-
 
   async onLogout() {
     this.loadingCtrl.create({
@@ -29,7 +26,5 @@ export class AppComponent {
         this.router.navigate(['/auth']);
         loadingEl.dismiss();
       })
-
-
   }
 }
