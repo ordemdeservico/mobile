@@ -23,7 +23,6 @@ export class ProfilePage implements OnInit {
 
   async ngOnInit() {
     this.username =  await this.storage.get('name');
-    console.log('name: ', this.username);
   }
 
   togglePasswordMode() {
@@ -40,9 +39,7 @@ export class ProfilePage implements OnInit {
       senhaNova: form.value.newPassword
     }
 
-
     const userId = await this.storage.get('userId');
-    console.log('ID: ', userId);
     this.loadingCtrl.create({
       message: 'Atualizando...'
     })
