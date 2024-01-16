@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, delay, from } from 'rxjs';
 import { StorageService } from './storage.service';
 import { environment } from 'src/environments/environment';
-import { Login } from '../models/auth.model';
+import { ChangePassword, Identify, Login, LoginResponse } from '../models/auth.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class AuthService {
     private http: HttpClient,
     private storage: StorageService
   ) { }
-  
+
 
   public setIsAuthenticated(value: boolean): void {
     this.isAuthenticatedSubject.next(value);
@@ -29,8 +29,16 @@ export class AuthService {
     return this.isAuthenticatedSubject.value;
   }
 
-  login(login: Login): Observable<{ token: string }> {
-    return this.http.post<{ token: string }>(`${this.API}/user/login`, login);
+  login(login: Login): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`${this.API}/user/login`, login);
+  }
+
+  identify(): Observable<Identify>{
+    return this.http.get<Identify>(`${this.API}/user/identify`);
+  }
+
+  changePassword(id: number, values: ChangePassword): Observable<ChangePassword> {
+    return this.http.patch<ChangePassword>(`${this.API}/user/password/${id}`, values)
   }
 
 

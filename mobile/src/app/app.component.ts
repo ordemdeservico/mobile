@@ -23,6 +23,10 @@ export class AppComponent {
       .then(async loadingEl => {
         loadingEl.present();
         await this.storage.delete('token');
+        await this.storage.delete('userId');
+        await this.storage.delete('name');
+        await this.storage.delete('role');
+        await this.storage.delete('email');
         this.router.navigate(['/auth']);
         loadingEl.dismiss();
       })

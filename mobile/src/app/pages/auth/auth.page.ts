@@ -44,7 +44,7 @@ export class AuthPage implements OnInit {
       .then(loadingEl => {
         loadingEl.present();
         this.authService.login(values).subscribe({
-          next: (res) => {
+          next: async (res) => {
             console.log('Usuário autenticado.', res);
             this.authService.setIsAuthenticated(true);
             this.storage.set('token', res.token);
@@ -57,7 +57,8 @@ export class AuthPage implements OnInit {
           }
         })
       })
-    
+
   }
+
 
 }
