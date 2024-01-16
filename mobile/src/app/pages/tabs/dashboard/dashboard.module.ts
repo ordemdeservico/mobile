@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { DashboardPageRoutingModule } from './dashboard-routing.module';
 
 import { DashboardPage } from './dashboard.page';
+import { ModalOsModule } from 'src/app/shared/components/modal-os/modal-os.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DashboardPageRoutingModule
+    DashboardPageRoutingModule,
+    ModalOsModule
   ],
   declarations: [DashboardPage]
 })
