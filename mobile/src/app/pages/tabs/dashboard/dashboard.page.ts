@@ -24,8 +24,11 @@ export class DashboardPage implements OnInit {
 
   async ngOnInit() {
     this.isLoading = true;
-    await this.Identify();
     this.fetchOrderServices();
+  }
+
+  async ionViewWillEnter(){
+    await this.Identify();
   }
 
   async fetchOrderServices() {
