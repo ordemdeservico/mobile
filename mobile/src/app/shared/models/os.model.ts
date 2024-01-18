@@ -38,3 +38,21 @@ export interface ImageOS {
     img_type: string;
   }];
 }
+
+
+export interface ConcludeOS {
+  ordem_servico_id: number;
+  data_final: Date | string;
+  material: string;
+  relatorio: string;
+  files: File;
+}
+
+export interface ConcludeOsResponse {
+  message: string;
+  ordem_servico_id: number;
+  data_final: Date | string;
+  material: string;
+  status: string;
+  uploadResponse: any;
+}
