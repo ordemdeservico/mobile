@@ -107,7 +107,7 @@
       </ion-col>
     </ion-row>
 
-    <form>
+    <form (ngSubmit)="onConcludeOs()">
     <ion-row>
       <ion-col>
         <ion-item lines="full">
@@ -143,6 +143,27 @@
               [(ngModel)]="materiais"
             ></ion-textarea>
           </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-margin-top gallery">
+        <ion-col>
+            <app-photo-gallery (imagePick)="onImagePick($event)"></app-photo-gallery>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-margin-top">
+        <ion-col>
+          <ion-item lines="full"></ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-button type="submit" expand="block" class="ion-padding">
+            Concluir OS
+            <ion-icon class="ion-padding-horizontal" name="build-outline" slot="end"></ion-icon>
+          </ion-button>
         </ion-col>
       </ion-row>
     </form>
