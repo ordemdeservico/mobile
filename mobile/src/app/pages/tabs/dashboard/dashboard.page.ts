@@ -56,6 +56,7 @@ export class DashboardPage implements OnInit {
       .then((modalEl) => {
         modalEl.onDidDismiss().then((modalData) => {
           console.log('Modal Data: ', modalData);
+          this.ionViewWillEnter();
         });
         modalEl.present();
       });
@@ -73,5 +74,12 @@ export class DashboardPage implements OnInit {
         console.error('Erro: ', err);
       },
     });
+  }
+
+  handleRefresh(event: { target: { complete: () => void; }; }) {
+    setTimeout(() => {
+      this.ionViewWillEnter();
+      event.target.complete();
+    }, 2000);
   }
 }
