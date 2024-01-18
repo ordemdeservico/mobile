@@ -77,9 +77,11 @@ export class DashboardPage implements OnInit {
   }
 
   handleRefresh(event: { target: { complete: () => void; }; }) {
+    this.isLoading = true;
     setTimeout(() => {
       this.ionViewWillEnter();
       event.target.complete();
+      this.isLoading = false;
     }, 2000);
   }
 }
