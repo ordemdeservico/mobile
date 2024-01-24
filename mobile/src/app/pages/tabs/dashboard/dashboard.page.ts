@@ -28,7 +28,6 @@ export class DashboardPage implements OnInit {
 
   async ionViewWillEnter(){
     await this.Identify();
-    await this.fetchOrderServices();
   }
 
   async fetchOrderServices() {
@@ -64,11 +63,12 @@ export class DashboardPage implements OnInit {
 
   private async Identify() {
     this.authService.identify().subscribe({
-      next: (data) => {
-        this.storage.set('role', data.cargo);
-        this.storage.set('name', data.nome);
-        this.storage.set('userId', data.id_usuario);
-        this.storage.set('email', data.email);
+      next: async (data) => {
+        await this.storage.set('role', data.cargo);
+        await this.storage.set('name', data.nome);
+        await this.storage.set('userId', data.id_usuario);
+        await this.storage.set('email', data.email);
+        await this.fetchOrderServices();
       },
       error: (err) => {
         console.error('Erro: ', err);
@@ -78,10 +78,10 @@ export class DashboardPage implements OnInit {
 
   handleRefresh(event: { target: { complete: () => void; }; }) {
     this.isLoading = true;
-    setTimeout(() => {
-      this.ionViewWillEnter();
+    setTimeout(async () => {
+      await this.fetchOrderServices()
       event.target.complete();
       this.isLoading = false;
-    }, 2000);
+    }, 1000);
   }
 }
