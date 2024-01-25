@@ -20,8 +20,6 @@ export class AuthGuard implements CanActivate {
 
     return from(this.storage.get('token')).pipe(
       switchMap(token => {
-        console.log('AuthToken: ', token);
-
         if (!token || token === undefined) {
           return this.router.navigateByUrl('/auth').then(() => false);
         } else {
