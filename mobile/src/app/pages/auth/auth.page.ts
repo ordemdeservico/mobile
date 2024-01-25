@@ -47,7 +47,7 @@ export class AuthPage implements OnInit {
           next: async (res) => {
             console.log('Usuário autenticado.', res);
             this.authService.setIsAuthenticated(true);
-            this.storage.set('token', res.token);
+            await this.storage.set('token', res.token);
             loadingEl.dismiss();
             form.reset();
             this.router.navigate(['/tabs/dashboard']);
