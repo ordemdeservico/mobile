@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { StorageService } from 'src/app/shared/services/storage.service';
 
@@ -18,7 +18,8 @@ export class AuthPage implements OnInit {
     private authService: AuthService,
     private storage: StorageService,
     private loadingCtrl: LoadingController,
-    private router: Router
+    private router: Router,
+    private alertCtrl: AlertController
   ) { }
 
   ngOnInit() {
@@ -45,15 +46,36 @@ export class AuthPage implements OnInit {
         loadingEl.present();
         this.authService.login(values).subscribe({
           next: async (res) => {
-            console.log('Usuário autenticado.', res);
-            this.authService.setIsAuthenticated(true);
-            await this.storage.set('token', res.token);
-            loadingEl.dismiss();
-            form.reset();
-            this.router.navigate(['/tabs/dashboard']);
+            if (res.cargo !== 'Tecnico') {
+              await this.alertCtrl.create({
+                header: 'Aplicativo restrito para técnicos!',
+                message: 'Para acessar o sistema entre pela web.',
+                buttons: ['Ok']
+              }).then(alertlEl => {
+                alertlEl.present();
+                loadingEl.dismiss();
+                return;
+              })
+            } else {
+              console.log('Usuário autenticado: ', res);
+              this.authService.setIsAuthenticated(true);
+              await this.storage.set('token', res.token);
+              loadingEl.dismiss();
+              form.reset();
+              this.router.navigate(['/tabs/dashboard']);
+            }
           },
-          error: (err) => {
+          error: async (err) => {
+
             console.error('Erro: ', err);
+            await this.alertCtrl.create({
+              header: 'Ocorreu um erro ao tentar fazer login!',
+              message: err.error.message,
+              buttons: ['Ok']
+            }).then(alertEl => {
+              loadingEl.dismiss();
+              alertEl.present();
+            })
           }
         })
       })
