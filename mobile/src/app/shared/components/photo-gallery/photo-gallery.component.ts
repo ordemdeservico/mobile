@@ -1,7 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { PhotoService } from '../../services/photo.service';
-
-import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
 
 @Component({
@@ -9,17 +7,13 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
   templateUrl: './photo-gallery.component.html',
   styleUrls: ['./photo-gallery.component.scss'],
 })
-export class PhotoGalleryComponent  implements OnInit {
+export class PhotoGalleryComponent {
 
   @Output() imagePick = new EventEmitter<string | File>();
 
   constructor(
     public photoService: PhotoService
   ) { }
-
-  async ngOnInit() {
-
-  }
 
   async addPhotoToGallery() {
     await this.photoService.addNewToGallery();

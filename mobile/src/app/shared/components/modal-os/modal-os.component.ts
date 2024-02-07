@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ConcludeOS, OrderService } from '../../models/os.model';
 import { LoadingController, ModalController } from '@ionic/angular';
-import { PhotoService } from '../../services/photo.service';
 import { DatePipe } from '@angular/common';
 import { OsService } from '../../services/os.service';
 
@@ -70,7 +69,7 @@ export class ModalOsComponent  implements OnInit {
     formData.append('ordem_servico_id', this.osId as any);
     formData.append('relatorio', this.relatorio);
     formData.append('material', this.materiais);
-    formData.append('data_final', this.datePipe.transform(data_final, 'yyyy/MM/dd') || '');
+    formData.append('data_final', this.datePipe.transform(data_final, 'yyyy/MM/dd') ?? '');
 
     console.log('formData: ', formData);
 
